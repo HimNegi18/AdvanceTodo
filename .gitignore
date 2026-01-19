@@ -1,0 +1,35 @@
+# Node modules
+node_modules
+
+# pnpm-lock.yaml in root (if you decide to hoist everything)
+pnpm-lock.yaml
+
+# Log files
+*.log
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js build output
+.next/
+out/
+
+# NestJS build output
+dist/
+
+# Prisma generated client
+backend/generated/
+
+# Prisma SQLite database file
+backend/dev.db
+
+# VSCode files
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db

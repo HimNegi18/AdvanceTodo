@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/dev.db:/app/dev.db # Mount SQLite database
+      - ./backend/.env:/app/.env # Mount .env file for secrets
+    environment:
+      DATABASE_URL: "file:/app/dev.db"
+      JWT_SECRET: "your_jwt_secret_here" # Ensure this matches your backend/.env
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001" # Next.js dev server usually runs on 3001 by default
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:3000" # Point to backend service
+    volumes:
+      - ./frontend/.env.local:/app/.env.local # Mount .env.local
